@@ -19,11 +19,15 @@ Create an Azure Container Instance that mounts multiple Azure File shares. Curre
 This template assumes the following resources are already in place:
 
 **Storage Account**: Storage account for the file share
+
 **File share**: 3 file shares in the above storage account
+
 **Azure Container Registry**: ACI will need to pull the the image from an Azure Container Registry, although the template can be easily modified to pull from another registry.
+
 **Log Analytics Workspace**: Container logs and Container events will be sent to a Log Analytics Workspace that can be queried as shown below:
 
 Sample queries:
+
 ContainerEvent_CL | limit 50
 | sort by TimeGenerated desc
 
