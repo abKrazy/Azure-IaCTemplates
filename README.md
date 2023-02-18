@@ -1,0 +1,1 @@
+Some quickstart IaC tempates for Azure that are not in the official Azure quickstarts (yet).
