@@ -11,7 +11,7 @@ languages:
 ---
 # Create an Azure Container Instance with multiple volume mounts backed by Azure File shares
 
-[![Deploy To Azure](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/deploytoazure.svg?sanitize=true)](https%3A%2F%2Fraw.githubusercontent.com%2FabKrazy%2FAzure-IaCTemplates%2Fmain%2Fmicrosoft.containerinstance%2Faci-multiple-file-shares%2Fazuredeploy.json)
+[![Deploy To Azure](https://aka.ms/deploytoazurebutton)](https://portal.azure.com/#create/Microsoft.Template/uri/https%3A%2F%2Fraw.githubusercontent.com%2FabKrazy%2FAzure-IaCTemplates%2Fmain%2Fmicrosoft.containerinstance%2Faci-multiple-file-shares%2Fazuredeploy.json)
 [![Visualize](https://raw.githubusercontent.com/Azure/azure-quickstart-templates/master/1-CONTRIBUTION-GUIDE/images/visualizebutton.svg?sanitize=true)](http://armviz.io/#/?load=https%3A%2F%2Fraw.githubusercontent.com%2FabKrazy%2FAzure-IaCTemplates%2Fmain%2Fmicrosoft.containerinstance%2Faci-multiple-file-shares%2Fazuredeploy.json)
 
 Create an Azure Container Instance that mounts multiple Azure File shares. Currently, ARM/YAML/programmatic method is the only way to mount multiple file shares in an Azure Container Instance - this is not supported from the Azure Portal or Azure CLI. 
