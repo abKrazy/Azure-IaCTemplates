@@ -1,0 +1,48 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "location": {
+          "value": "[resourceGroup().location]"          
+        },
+        "aciResourceName": {
+            "value": ""
+        },
+        "containerRegistryName": {
+            "value": ""
+        },
+        "containerRegistryPassword": {
+            "value": ""
+        },
+        "imageName": {
+            "value": ""
+        },
+        "secretEnvValue": {
+            "value": ""
+        },
+        "storageAccountName": {
+            "value": ""
+        },
+        "storageAccountKey": {
+            "value": ""
+        },
+        "fileShare1": {
+            "value": ""
+        },
+        "fileShare2": {
+            "value": ""
+        },
+        "fileShare3": {
+            "value": ""
+        },
+        "workspaceId": {
+            "value": ""
+        },
+        "workspaceKey": {
+            "value": ""
+        },
+        "workspaceResourceId": {
+            "value": ""
+        }
+      }
+  }

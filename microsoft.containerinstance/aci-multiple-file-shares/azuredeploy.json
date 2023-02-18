@@ -1,0 +1,162 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "metadata": {
+    "_generator": {
+      "name": "bicep",
+      "version": "0.14.6.61914",
+      "templateHash": "17297984106703305398"
+    }
+  },
+  "parameters": {
+    "location": {
+      "type": "string",
+      "defaultValue": "[resourceGroup().location]"
+    },
+    "aciResourceName": {
+      "type": "string"
+    },
+    "containerRegistryName": {
+      "type": "string"
+    },
+    "containerRegistryPassword": {
+      "type": "securestring"
+    },
+    "imageName": {
+      "type": "string"
+    },
+    "secretEnvValue": {
+      "type": "securestring"
+    },
+    "storageAccountName": {
+      "type": "string"
+    },
+    "storageAccountKey": {
+      "type": "securestring"
+    },
+    "fileShare1": {
+      "type": "string"
+    },
+    "fileShare2": {
+      "type": "string"
+    },
+    "fileShare3": {
+      "type": "string"
+    },
+    "workspaceId": {
+      "type": "string"
+    },
+    "workspaceKey": {
+      "type": "securestring"
+    },
+    "workspaceResourceId": {
+      "type": "string"
+    }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.ContainerInstance/containerGroups",
+      "apiVersion": "2022-09-01",
+      "name": "[parameters('aciResourceName')]",
+      "location": "[parameters('location')]",
+      "identity": {
+        "type": "SystemAssigned"
+      },
+      "properties": {
+        "containers": [
+          {
+            "name": "[parameters('aciResourceName')]",
+            "properties": {
+              "image": "[format('{0}.azurecr.io/{1}', parameters('containerRegistryName'), parameters('imageName'))]",
+              "ports": [
+                {
+                  "port": 80
+                }
+              ],
+              "resources": {
+                "requests": {
+                  "cpu": 1,
+                  "memoryInGB": 2
+                }
+              },
+              "environmentVariables": [
+                {
+                  "name": "SECRET_ENV_VAR",
+                  "value": "[parameters('secretEnvValue')]"
+                }
+              ],
+              "volumeMounts": [
+                {
+                  "name": "myshare1",
+                  "mountPath": "/mnt/share1"
+                },
+                {
+                  "name": "myshare2",
+                  "mountPath": "/mnt/share2"
+                },
+                {
+                  "name": "myshare3",
+                  "mountPath": "/mnt/share3"
+                }
+              ]
+            }
+          }
+        ],
+        "imageRegistryCredentials": [
+          {
+            "server": "[format('{0}.azurecr.io', parameters('containerRegistryName'))]",
+            "username": "[parameters('containerRegistryName')]",
+            "password": "[parameters('containerRegistryPassword')]"
+          }
+        ],
+        "osType": "Linux",
+        "restartPolicy": "Never",
+        "ipAddress": {
+          "type": "Public",
+          "ports": [
+            {
+              "port": 80
+            }
+          ]
+        },
+        "volumes": [
+          {
+            "name": "myshare1",
+            "azureFile": {
+              "shareName": "[parameters('fileShare1')]",
+              "storageAccountName": "[parameters('storageAccountName')]",
+              "storageAccountKey": "[parameters('storageAccountKey')]",
+              "readOnly": false
+            }
+          },
+          {
+            "name": "myshare2",
+            "azureFile": {
+              "shareName": "[parameters('fileShare2')]",
+              "storageAccountName": "[parameters('storageAccountName')]",
+              "storageAccountKey": "[parameters('storageAccountKey')]",
+              "readOnly": false
+            }
+          },
+          {
+            "name": "myshare3",
+            "azureFile": {
+              "shareName": "[parameters('fileShare3')]",
+              "storageAccountName": "[parameters('storageAccountName')]",
+              "storageAccountKey": "[parameters('storageAccountKey')]",
+              "readOnly": false
+            }
+          }
+        ],
+        "diagnostics": {
+          "logAnalytics": {
+            "logType": "ContainerInstanceLogs",
+            "workspaceId": "[parameters('workspaceId')]",
+            "workspaceKey": "[parameters('workspaceKey')]",
+            "workspaceResourceId": "[parameters('workspaceResourceId')]"
+          }
+        }
+      }
+    }
+  ]
+}
