@@ -1,1 +1,1 @@
-# Azure=IaCTemplates
+# Azure-IaCTemplates
