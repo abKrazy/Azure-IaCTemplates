@@ -44,7 +44,7 @@ resource containerGroup 'Microsoft.ContainerInstance/containerGroups@2022-09-01'
 	 environmentVariables: [
             {
               name: 'SECRET_ENV_VAR'
-              value: secretEnvValue
+              secureValue: secretEnvValue
             }
           ]
           volumeMounts: [
