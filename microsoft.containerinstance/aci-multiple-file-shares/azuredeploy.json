@@ -82,7 +82,7 @@
               "environmentVariables": [
                 {
                   "name": "SECRET_ENV_VAR",
-                  "value": "[parameters('secretEnvValue')]"
+                  "secureValue": "[parameters('secretEnvValue')]"
                 }
               ],
               "volumeMounts": [
